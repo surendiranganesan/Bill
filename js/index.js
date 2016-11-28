@@ -1,49 +1,71 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+var database=null;
+(function ($) {
+    $.fn.serializeFormJSON = function () {
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+})(jQuery); 
+function redirect(page)
+{
+switch(page)
+{
+	case "product":
+	window.location="product.html";
+	break;
+	
+}	
+}
+$( document ).ready(function() {
+	
+document.addEventListener("deviceready",onDeviceReady,false);
+function save_prod(obj)
+{
+	console.log(obj);
+	Prod_add_data(obj);
+}	
+$("#add_prod_form").validate({
+		errorPlacement: function (error, element) {
+        error.appendTo(element.parent().prev());
+    },
+	submitHandler: function (form) {
+		var $this = $(form);		
+		save_prod($this.serializeFormJSON());
+        return false;	
+	}	  
+});
+});
 
-        console.log('Received Event: ' + id);
-    }
-};
+function onDeviceReady() 
+{
+	console.log("device ready");
+database=window.openDatabase("myappdb","1.0","Application Database",200000);
+database.transaction(PopulateDatabase,errorDB,successDB); 
+
+}
+
+/* $(document).on('submit', '#add_prod_form', function (e) {
+	
+	
+    //cache the form element for use in this function
+    var $this = $(this);
+
+    //prevent the default submission of the form
+    e.preventDefault();
+
+    //run an AJAX post request to your server-side script, $this.serialize() is the data from your form being added to the request
+	
+	console.log($this.serialize());
+	
+}); */
