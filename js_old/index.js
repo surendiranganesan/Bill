@@ -17,28 +17,25 @@ var database=null;
         return o;
     };
 })(jQuery); 
-
-
 function redirect(page)
 {
 switch(page)
 {
 	case "product":
-	$.mobile.navigate( "#product" );
+	//window.location="index.html#product";
+	$.mobile.navigate( "#bar" );
 	break;
 	
 }	
 }
-
+$( document ).ready(function() {
+	
+document.addEventListener("deviceready",onDeviceReady,false);
 function save_prod(obj)
 {
 	console.log(obj);
-	Prod_add_data(obj); 
+	Prod_add_data(obj);
 }	
-
-$( document ).ready(function() {
-document.addEventListener("deviceready",onDeviceReady,false);
-
 $("#add_prod_form").validate({
 		errorPlacement: function (error, element) {
         error.appendTo(element.parent().prev());
@@ -48,10 +45,6 @@ $("#add_prod_form").validate({
 		save_prod($this.serializeFormJSON());
         return false;	
 	}	  
-});
-
-$("#product").on("pageshow" , function() {
-  Prod_select();
 });
 });
 
@@ -63,7 +56,7 @@ database.transaction(PopulateDatabase,errorDB,successDB);
 
 }
 
- $(document).on('submit', '#add_prod_form', function (e) {
+/* $(document).on('submit', '#add_prod_form', function (e) {
 	
 	
     //cache the form element for use in this function
@@ -76,4 +69,4 @@ database.transaction(PopulateDatabase,errorDB,successDB);
 	
 	console.log($this.serialize());
 	
-}); 
+}); */
