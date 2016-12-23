@@ -61,6 +61,21 @@ function onDeviceReady()
 database=window.openDatabase("myappdb","1.0","Application Database",200000);
 database.transaction(PopulateDatabase,errorDB,successDB); 
 
+
+//alert("language"+BTPrinter);
+//console.log(BTPrinter);
+
+console.log(window);
+console.log(navigator);
+console.log(Camera);
+if (typeof window.BTPrinter !== 'undefined') {
+	
+	alert("undefdined");
+  // Your variable is undefined
+}
+alert("kkk");
+
+alert("after");
 }
 
  $(document).on('submit', '#add_prod_form', function (e) {
