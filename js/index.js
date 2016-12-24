@@ -69,13 +69,17 @@ console.log(window);
 console.log(navigator);
 console.log(Camera);
 if (typeof window.BTPrinter !== 'undefined') {
-	
-	alert("undefdined");
-  // Your variable is undefined
+	console.log("inside");
+	window.BTPrinter.list(function(data){
+        console.log("Success");
+		console.log(data);
+        console.log(data.toString()); //list of printer in data array
+    },function(err){
+        console.log("Error");
+        console.log(err);
+    })
 }
-alert("kkk");
 
-alert("after");
 }
 
  $(document).on('submit', '#add_prod_form', function (e) {
