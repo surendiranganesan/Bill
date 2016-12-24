@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Bizcatch</title>
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet"  type="text/css" href="css/jquery.mobile.structure-1.4.0.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/db.js"></script> 
+		<script type="text/javascript">
+		$(function(){
+		function camSuccess(imgData)
+		{
+		alert(imgData);
+		$("#img_camPH").attr("src",imgData);
+		}
+		function camError(error)
+		{
+		console.log(error);
+		}
+		function accessCamera()
+		{
+			var options={
+			destinatonType:Camera.DestinationType.FILE_URI,
+			sourceType:Camera.PictureSourceType.CAMERA
+			}
+			navigator.camera.getPicture(camSuccess,camError,options);
+		}
+		
+		$("#btn_camera").on('click',accessCamera);
+		
+			
+		});
+		
+		</script>
+	</head>
+	<body>
+		<div class="app">
+			<div data-role="page" id="home" data-theme="c">
+				<div data-role="header" data-position="inline">
+					<a href="#home" data-icon="home"  data-theme="c"> </a>
+					<h1>Bizcatch</h1>
+					<a href="#home" data-icon="check"> </a>
+				</div>
+				<div data-role="content" data-theme="a">
+				<br /><br />
+					<a href="#product" data-role="button" data-theme="c" data-icon="check">Product</a><br />
+					<a href="#home" data-role="button" data-theme="c" data-icon="check">Sales</a><br />
+					<a href="#home" data-role="button" data-theme="c" data-icon="check">Report</a><br   />
+					<a href="#home" data-role="button" data-theme="c" data-icon="check">Settings</a><br/>
+				</div>
+				<button id="btn_camera">Camera</button>
+				<img id="img_camPH">
+			</div>
+			
+			<div data-role="page" id="product" data-theme="c">
+				<div data-role="header" data-position="inline">
+					<a href="#home" data-icon="home"  data-theme="c"> </a>
+					<h1>Bizcatch</h1>
+					<a href="#addproduct" data-icon="plus"> </a>
+				</div>
+				
+				<div data-role="content" data-theme="a">
+				<!--	<form action="#" method="get">			
+					<div data-role="fieldcontain">
+						<input id="filterBasic-input" data-type="search">
+					</div>
+					
+						<ul data-role="listview" id="prod_list_view"  data-divider-theme="c"  data-filter="true" data-input="#filterBasic-input" >
+							<li data-role="list-divider">Product</li>
+						</ul>
+					</form>
+					<script>
+						$( document ).ready(function() {
+						onDeviceReady();
+						Prod_select();
+						});
+			    </script> -->
+					
+							
+					<div data-role="fieldcontain">
+						<input id="filterBasic-input" data-type="search">
+					</div>
+						<ul data-role="listview" id="prod_list_view" data-divider-theme="c"  data-filter="true" data-input="#filterBasic-input" >
+							<li data-role="list-divider">Product</li>
+						</ul>
+					
+				</div>
+			</div>
+		
+			<div data-role="page" id="addproduct" data-theme="c">
+				<div data-role="header" data-position="inline">
+					<a href="#home" data-icon="home"  data-theme="c"> </a>
+					<h1>Add Product</h1>
+					<a href="#product" data-icon="check"> </a>
+				</div>
+					<div data-role="content" data-theme="a">
+				
+					<form action="#" method="get" id="add_prod_form" novalidate>
+
+					<div data-role="fieldcontainer">
+						<label for="code">Code:<em>* </em></label>
+						<input type="text" name="code" id="code" class="required" required/>
+					</div>
+					<div data-role="fieldcontainer">
+						<label for="desc">Description:<em>* </em></label>
+						<input type="text" name="desc" id="desc" required/>
+					</div>
+					<div data-role="fieldcontainer">
+						<label for="unit">Unit:<em>* </em> </label>
+						<input type="text" name="unit" id="unit" />	
+					</div>
+					<div data-role="fieldcontainer">
+						<label for="price">Price:<em>* </em> </label>
+						<input type="text" name="price" id="price" />
+					</div>
+					<input type="hidden" name="p_id" id="p_id" />
+					<style>
+						label.error {
+									color: red;
+									}
+						em { color: red; font-weight: bold; padding-right: .25em; }
+					</style>
+					<div class="ui-body">
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a"><button type="reset" onclick="redirect('product');" data-theme="c">Cancel</button></div>
+							<div class="ui-block-b"><button type="submit" data-theme="c">Save</button></div>
+					    </fieldset>
+					</div>
+					<p class="status_msg"></p>
+					</form>
+					</div>
+			</div>
+			
+			
+		</div>	
+	</body>
+</html>

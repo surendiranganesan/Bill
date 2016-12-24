@@ -79,7 +79,7 @@ if (typeof window.BTPrinter !== 'undefined') {
         console.log(err);
     })
 }
-alert("lll");
+
 }
 
  $(document).on('submit', '#add_prod_form', function (e) {
