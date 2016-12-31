@@ -120,9 +120,7 @@
     </platform>
 	<platform name="android" >
 		<preference name="android-minSdkVersion"      value="14" />
-		<preference name="android-build-tool" value="ant|gradle" />
-		<preference name="KeepRunning" value="false"/>
-		<preference name="AndroidLaunchMode" value="singleTask"/>
+		<preference name="AndroidLaunchMode" value="singleInstance"/>
 	</platform>
     <plugin name="cordova-plugin-bluetooth-printer" spec="https://github.com/srehanuddin/Cordova-Plugin-Bluetooth-Printer.git" />
 </widget>
