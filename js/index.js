@@ -91,33 +91,43 @@ if (typeof window.BTPrinter !== 'undefined') {
 function print_text(txt)
 {
 				BTPrinter.list(function(data){
-					console.log("kkkk");
-					alert("kkkk");
+					console.log("Success");
+					alert("Success list");
 					console.log(data); 
 					var device_name=data[0];
 			  BTPrinter.connect(function(data){
 						console.log("Success connect");
+						alert("Success connect");
 						console.log(data);
 				BTPrinter.printText(function(data){
 				console.log("Success Print");
+				alert("Success Print");
 				console.log(data)
 				BTPrinter.disconnect(function(data){
 				console.log("Success disconnected");
+				alert("Success disconnected");
 				console.log(data)
 				},function(err){
 				console.log("Error");
+				alert("Error");
+				alert(err.toString());				
 				console.log(err)
 				}, device_name);
 				},function(err){
 				console.log("Error Print!");
-				console.log(err);
+				alert("Error Print!");
+				alert(err.toString());
 				}, txt)			
 					},function(err){
 						console.log("Error");
+						alert("Error2");
+						alert(err.toString());
 						console.log(err)
 					}, device_name)
 			 },function(err){
 				 console.log("Error");
+				alert("Error 3");
+				alert(err.toString());
 				 console.log(err);
 			 })
 }
