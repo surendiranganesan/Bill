@@ -91,7 +91,8 @@ if (typeof window.BTPrinter !== 'undefined') {
 function print_text(txt)
 {
 				BTPrinter.list(function(data){
-					console.log("Success");
+					console.log("kkkk");
+					alert("kkkk");
 					console.log(data); 
 					var device_name=data[0];
 			  BTPrinter.connect(function(data){
