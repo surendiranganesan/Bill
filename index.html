@@ -36,7 +36,13 @@
 		
 		$("#btn_camera").on('click',accessCamera);
 		
-			
+			$( document ).ready(function() {
+			$("#btn_print").on('click',function(){
+			console.log("inside");
+			console.log($("#print_area").html());
+			print_text(" Happy 2016 christmas \n and 2017 happy new year \n \n");
+			});
+			});	
 		});
 		
 		</script>
@@ -44,7 +50,7 @@
 	<body>
 		<div class="app">
 			<div data-role="page" id="home" data-theme="c">
-				<div data-role="header" data-position="inline">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false" >
 					<a href="#home" data-icon="home"  data-theme="c"> </a>
 					<h1>Bizcatch</h1>
 					<a href="#home" data-icon="check"> </a>
@@ -57,11 +63,13 @@
 					<a href="#home" data-role="button" data-theme="c" data-icon="check">Settings</a><br/>
 				</div>
 				<button id="btn_camera">Camera</button>
+				<textarea name="print_area" id="print_area" ></textarea>
+				<button id="btn_print">Print</button>
 				<img id="img_camPH">
 			</div>
 			
 			<div data-role="page" id="product" data-theme="c">
-				<div data-role="header" data-position="inline">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false" >
 					<a href="#home" data-icon="home"  data-theme="c"> </a>
 					<h1>Bizcatch</h1>
 					<a href="#addproduct" data-icon="plus"> </a>
@@ -96,7 +104,7 @@
 			</div>
 		
 			<div data-role="page" id="addproduct" data-theme="c">
-				<div data-role="header" data-position="inline">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false" >
 					<a href="#home" data-icon="home"  data-theme="c"> </a>
 					<h1>Add Product</h1>
 					<a href="#product" data-icon="check"> </a>

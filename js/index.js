@@ -1,4 +1,5 @@
 var database=null;
+var bluetooth_prnt_var=null;
 (function ($) {
     $.fn.serializeFormJSON = function () {
 
@@ -61,25 +62,14 @@ function onDeviceReady()
 database=window.openDatabase("myappdb","1.0","Application Database",200000);
 database.transaction(PopulateDatabase,errorDB,successDB); 
 
-
-//alert("language"+BTPrinter);
-//console.log(BTPrinter);
-
 console.log(window);
 console.log(navigator);
 console.log(Camera);
 if (typeof window.BTPrinter !== 'undefined') {
 	console.log("inside");
-	window.BTPrinter.list(function(data){
-        console.log("Success");
-		console.log(data);
-        alert(data.toString()); //list of printer in data array
-    },function(err){
-        console.log("Error");
-        console.log(err);
-    })
+	bluetooth_prnt_var = BTPrinter;			
 }
-alert("lll");
+
 }
 
  $(document).on('submit', '#add_prod_form', function (e) {
@@ -96,3 +86,37 @@ alert("lll");
 	console.log($this.serialize());
 	
 }); 
+
+
+function print_text(txt)
+{
+				BTPrinter.list(function(data){
+					console.log("Success");
+					console.log(data); 
+					var device_name=data[0];
+			  BTPrinter.connect(function(data){
+						console.log("Success connect");
+						console.log(data);
+				BTPrinter.printText(function(data){
+				console.log("Success Print");
+				console.log(data)
+				BTPrinter.disconnect(function(data){
+				console.log("Success disconnected");
+				console.log(data)
+				},function(err){
+				console.log("Error");
+				console.log(err)
+				}, device_name);
+				},function(err){
+				console.log("Error Print!");
+				console.log(err);
+				}, txt)			
+					},function(err){
+						console.log("Error");
+						console.log(err)
+					}, device_name)
+			 },function(err){
+				 console.log("Error");
+				 console.log(err);
+			 })
+}
