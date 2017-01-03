@@ -116,5 +116,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 	<gap:config-file platform="android" parent="/manifest/application"> <activity android:launchMode="singleTask" /> </gap:config-file>
-    <plugin name="cordova-plugin-bluetooth-printer" spec="https://github.com/srehanuddin/Cordova-Plugin-Bluetooth-Printer.git" />
+    <plugin name="cordova-plugin-bluetooth-printer" spec="https://github.com/ViniciusAzevedo/Cordova-Plugin-Bluetooth-Printer.git" />
+
 </widget>
