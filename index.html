@@ -38,9 +38,11 @@
 		
 			$( document ).ready(function() {
 			$("#btn_print").on('click',function(){
-			console.log("inside");
-			alert($("#print_area").val());
+			console.log("clicked");
+			if(localStorage.getItem("selected_printer_value")!=="")
 			print_text($("#print_area").val());
+			else
+			$.mobile.navigate( "#printer_config" );
 			});
 			});	
 		});
@@ -60,13 +62,16 @@
 					<a href="#product" data-role="button" data-theme="c" data-icon="check">Product</a><br />
 					<a href="#home" data-role="button" data-theme="c" data-icon="check">Sales</a><br />
 					<a href="#home" data-role="button" data-theme="c" data-icon="check">Report</a><br   />
-					<a href="#home" data-role="button" data-theme="c" data-icon="check">Settings</a><br/>
+					<a href="#settings" data-role="button" data-theme="c" data-icon="check">Settings</a><br/>
 				</div>
 <!-- 				<button id="btn_camera">Camera</button> -->
  				<textarea name="print_area" id="print_area" ></textarea>
 				<button id="btn_print">Print</button>
 <!-- 				<img id="img_camPH"> 
- -->			</div>
+ -->			
+				<div id="divLoading"> 
+				</div>
+				</div>
 			
 			<div data-role="page" id="product" data-theme="c">
 				<div data-role="header" data-position="fixed" data-tap-toggle="false" >
@@ -146,7 +151,34 @@
 					</form>
 					</div>
 			</div>
-			
+			<div data-role="page" id="settings" data-theme="c">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false" >
+					<a href="#home" data-icon="home"  data-theme="c"> </a>
+					<h1>Bizcatch</h1>					
+				</div>
+				<div data-role="content" data-theme="a">
+					<a href="#printer_config" data-role="button" data-theme="c" data-icon="check">Printer Configuration</a><br />											
+				</div>
+			</div>
+			<div data-role="page" id="printer_config" data-theme="c">
+				<div data-role="header" data-position="fixed" data-tap-toggle="false" >
+					<a href="#home" data-icon="home"  data-theme="c"> </a>
+					<h1>Bizcatch</h1>
+					<a href="#" data-icon="refresh" id="printer_refresh" > </a>					
+				</div>
+				<div data-role="content" data-theme="a" id="printer_list_div">
+				<div class="ui-body ui-body-e info" >		
+					<p>Make Sure you are connected to bluetooth and you have paired the bluetooth printer. If your device is not showing please use the refresh icon on the right top.</p>
+				</div>
+				<form action="#" name="print_conf_form" id="print_conf_form" novalidate>
+				<fieldset data-role="controlgroup" id="bluetooth_list" name="bluetooth_list" data-mini="true">
+					
+							
+				</fieldset>
+				</form>
+				<p id="print_error error"></p>
+				</div>
+			</div>
 			
 			
 	</body>
